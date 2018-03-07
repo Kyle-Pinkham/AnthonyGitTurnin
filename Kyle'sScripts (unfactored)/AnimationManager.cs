@@ -12,9 +12,16 @@ public class AnimationManager : MonoBehaviour {
         animator = GetComponent<Animator>();
     }
 
-    public void Walking()
+    public void WalkingAndIdle()
     {
-        animator.SetFloat("isWalking", 1);
+        if (animator.GetFloat("isWalking") == 0)
+        {
+            animator.SetTrigger("toIdle");
+        }
+        else
+        {
+            animator.SetFloat("isWalking", 1);
+        }
     }
 
     public void Magic()
@@ -25,6 +32,16 @@ public class AnimationManager : MonoBehaviour {
     public void Attack()
     {
         animator.SetTrigger("useAttack");
+    }
+
+    public void Jump()
+    {
+        animator.SetTrigger("doJump");
+    }
+
+    public void ForceWalk()
+    {
+        animator.SetFloat("isWalking", 1);
     }
 
 }
